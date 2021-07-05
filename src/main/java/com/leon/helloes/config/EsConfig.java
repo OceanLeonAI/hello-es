@@ -19,7 +19,7 @@ public class EsConfig {
                 9300); // TCP 端口 9300，不是 HTTP 端口 9200
 
         Settings settings = Settings.builder()
-                .put("cluster.name", "leon")
+                .put("cluster.name", "leon-es")
                 .build();
         TransportClient client = new PreBuiltTransportClient(settings);
         client.addTransportAddress(node); // 可以添加多个节点

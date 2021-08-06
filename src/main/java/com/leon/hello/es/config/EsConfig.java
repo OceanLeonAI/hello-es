@@ -1,5 +1,6 @@
 package com.leon.hello.es.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
@@ -9,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-
+@Slf4j
 @Configuration
 public class EsConfig {
     /*
@@ -40,6 +41,7 @@ public class EsConfig {
                 .build();
         TransportClient client = new PreBuiltTransportClient(settings);
         client.addTransportAddress(node); // 可以添加多个节点
+        log.info("当前连接的客户端信息为 {} ",client);
         return client;
     }
 

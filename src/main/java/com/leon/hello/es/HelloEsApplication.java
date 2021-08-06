@@ -1,4 +1,4 @@
-package com.leon.helloes;
+package com.leon.hello.es;
 
 import com.leon.hello.es.entity.User;
 import org.elasticsearch.action.delete.DeleteResponse;

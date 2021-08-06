@@ -1,4 +1,4 @@
-package com.leon.helloes.config;
+package com.leon.hello.es.config;
 
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
@@ -12,6 +12,7 @@ import java.net.UnknownHostException;
 
 @Configuration
 public class EsConfig {
+    /*
     @Bean
     public TransportClient transportClient() throws UnknownHostException {
         InetSocketTransportAddress node = new InetSocketTransportAddress(
@@ -25,4 +26,21 @@ public class EsConfig {
         client.addTransportAddress(node); // 可以添加多个节点
         return client;
     }
+    */
+
+
+    @Bean
+    public TransportClient transportClient() throws UnknownHostException {
+        InetSocketTransportAddress node = new InetSocketTransportAddress(
+                InetAddress.getByName("92.168.11.197"),
+                9300); // TCP 端口 9300，不是 HTTP 端口 9200
+
+        Settings settings = Settings.builder()
+                .put("cluster.name", "zhishen")
+                .build();
+        TransportClient client = new PreBuiltTransportClient(settings);
+        client.addTransportAddress(node); // 可以添加多个节点
+        return client;
+    }
+
 }

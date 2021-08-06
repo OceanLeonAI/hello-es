@@ -1,0 +1,6 @@
+user:
+  name: leon
+  age: 20
+  ok: true
+server:
+  port: 8888

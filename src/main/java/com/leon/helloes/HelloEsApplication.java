@@ -1,5 +1,6 @@
 package com.leon.helloes;
 
+import com.leon.hello.es.entity.User;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
@@ -36,8 +37,20 @@ public class HelloEsApplication {
     @Autowired
     private TransportClient client;
 
+    @Autowired
+    private User user;
+
     public static void main(String[] args) {
         SpringApplication.run(HelloEsApplication.class, args);
+    }
+
+    /**
+     * @return
+     */
+    @RequestMapping("/getUserInfo")
+    public ResponseEntity getUserInfo() {
+        System.out.println(user);
+        return new ResponseEntity(user, HttpStatus.OK);
     }
 
     /**
@@ -167,7 +180,7 @@ public class HelloEsApplication {
         RangeQueryBuilder rangeQuery = QueryBuilders.rangeQuery("word_count")
                 .from(gtWordCount);
 
-         if (ltWordCount != null && ltWordCount > 0) {
+        if (ltWordCount != null && ltWordCount > 0) {
             rangeQuery.to(ltWordCount);
         }
 
